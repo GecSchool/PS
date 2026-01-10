@@ -1,10 +1,14 @@
 function solution(clothes) {
     const map = new Map();
     
-    for (const [cloth, category] of clothes) {
-        map.set(category, [...(map.get(category) || []),cloth]);
+    for (const [_, category] of clothes) {
+        map.set(category, (map.get(category) || 0) + 1);
     }
 
-    let count = [...map].reduce((acc, [_, cloths]) => (cloths.length + 1) * acc , 1) - 1;
-    return count;
+    let answer = 1;
+    for (const count of map.values()){
+        answer *= (count + 1);
+    }
+    
+    return answer - 1;
 }
