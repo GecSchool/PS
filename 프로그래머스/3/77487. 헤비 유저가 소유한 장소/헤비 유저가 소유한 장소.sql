@@ -1,0 +1,8 @@
+-- 코드를 입력하세요
+SELECT
+        ID,
+        NAME,
+        HOST_ID
+FROM (SELECT *, COUNT(*) OVER(PARTITION BY HOST_ID) AS counts FROM PLACES) AS PLACES_COUNT
+WHERE counts >= 2
+ORDER BY ID ASC;
